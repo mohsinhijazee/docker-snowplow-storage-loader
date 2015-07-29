@@ -14,7 +14,7 @@
 :download:
   :folder: # Not required for Redshift
 :targets:
-  - :name: "My Redshift database"
+  - :name: {{ TARGET_NAME | default("My Redshift database") }}
     :type: redshift
     :host: {{TARGETS_HOST}} # The endpoint as shown in the Redshift console
     :database: {{TARGETS_DATABASE}} # Name of database
@@ -22,6 +22,6 @@
     :table: {{TARGETS_TABLE}}
     :username: {{TARGETS_USERNAME}}
     :password: {{TARGETS_PASSWORD}}
-    :maxerror: 1 # Stop loading on first error, or increase to permit more load errors
+    :maxerror: {{ MAXERROR | default(1) }}  # Stop loading on first error, or increase to permit more load errors
     :comprows: 200000 # Default for a 1 XL node cluster. Not used unless --include compupdate specified
 
